@@ -10,6 +10,7 @@ app = FastAPI(
     title="NomaApp AI Service",
     version="1.0.0"
 )
+PORT=8000
 
 @app.on_event("startup")
 def startup_event():
@@ -25,4 +26,4 @@ def root():
 
 if __name__ == "__main__":
     uvicorn.run(app
-                , host='192.168.0.5', port=8000)
+                , host='0.0.0.0', port=PORT)
