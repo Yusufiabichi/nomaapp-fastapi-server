@@ -4,13 +4,12 @@ import os
 
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
 import uvicorn
 import numpy as np
 from io import BytesIO
 from PIL import Image
 import tensorflow as tf
-
-from main import PORT
 
 app = FastAPI()
 
@@ -26,7 +25,19 @@ app.add_middleware(
     allow_headers=["*"],
 ) 
 
-MODEL = tf.keras.models.load_model("NomaApp_v2.h5")
+BASE_DIR = Path(__file__).resolve().parent
+
+MODEL_PATH = BASE_DIR / "NomaApp_v2.h5"
+
+MODEL = None
+@app.on_event("startup")
+def startup():
+    global MODEL
+
+    MODEL = tf.keras.models.load_model(MODEL_PATH)
+
+    print("Model loaded")
+# MODEL = tf.keras.models.load_model("NomaApp_v2.h5")
 
 CLASS_NAMES = ['Maize_Blight', 'Maize_Common_Rust', 'Maize_Gray_Leaf_Spot',
                 'Maize_Healthy', 'rice_bacterial_leaf_blight',

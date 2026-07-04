@@ -1,5 +1,7 @@
 
 
+import os
+
 from fastapi import FastAPI
 from app.api.router import api_router
 from app.models.loader import load_models
@@ -25,5 +27,6 @@ def root():
     return {"message": "FastAPI server is running 🚀"}
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
     uvicorn.run(app
-                , host='0.0.0.0', port=PORT)
+                , host='0.0.0.0', port=port)

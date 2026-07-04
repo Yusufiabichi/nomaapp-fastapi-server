@@ -1,7 +1,0 @@
-fastapi[all]
-uvicorn
-pydantic
-python-multipart
-pillow
-numpy
-tensorflow==2.19.0
