@@ -3,4 +3,9 @@ name = "GOOGLE_RUNTIME_VERSION"
 value = "3.13"
 
 [[build.env]]
+<<<<<<< HEAD
 value = "uvicorn main:app --host 0.0.0.0 --port $PORT"
+=======
+name = "GOOGLE_ENTRYPOINT"
+value = "python3 -m uvicorn main:app --host 0.0.0.0 --port $PORT"
+>>>>>>> fd0c6420c9acc0da5b182a99cc592952f42217fd
