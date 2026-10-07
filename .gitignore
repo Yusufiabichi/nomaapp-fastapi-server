@@ -16,6 +16,7 @@ env/
 
 # macOS
 .DS_Store
+.claude
 
 # Logs
 *.log
@@ -42,3 +43,5 @@ test_img/
 # Temporary files
 tmp/
 temp/
+# Model disk cache (populated from R2 at runtime)
+model_cache/
