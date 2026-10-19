@@ -17,7 +17,7 @@
   },
   "experts": {
     "maize": {
-      "file": "experts/maize_v1.onnx",
+      "file": "experts/corn_model_v1.onnx",
       "version": "1.0.0",
       "diseases": [
         "northern_blight",
@@ -27,7 +27,27 @@
       ]
     },
     "cassava": {
-      "file": "experts/cassava_v1.onnx",
+      "file": "experts/cassava_model_v1.onnx",
+      "version": "1.0.0",
+      "diseases": [
+        "cbsd",
+        "cmd",
+        "cgm",
+        "healthy"
+      ]
+    },
+    "rice": {
+      "file": "experts/rice_model_v1.onnx",
+      "version": "1.0.0",
+      "diseases": [
+        "cbsd",
+        "cmd",
+        "cgm",
+        "healthy"
+      ]
+    },
+    "tomato": {
+      "file": "experts/tomato_model_v1.onnx",
       "version": "1.0.0",
       "diseases": [
         "cbsd",
