@@ -92,24 +92,36 @@ class OODResult:
     score: float | None  # energy score; None when the softmax fallback was used
     confidence: float
     rejected: bool
+    threshold: float  # the energy or softmax threshold that was applied
 
 
-def evaluate_expert(scores: ModelScores, settings: Settings) -> OODResult:
+def evaluate_expert(
+    scores: ModelScores, settings: Settings, energy_threshold: float | None = None
+) -> OODResult:
+    """energy_threshold is the expert's manifest value; None falls back to ENERGY_OOD_THRESHOLD.
+
+    Logit scales differ between models, so each expert should ship its own calibrated value.
+    """
     confidence = softmax_confidence(scores.probs)
     if scores.logits is not None:
         energy = energy_score(scores.logits, settings.energy_temperature)
         if np.isfinite(energy):
+            threshold = (
+                settings.energy_ood_threshold if energy_threshold is None else energy_threshold
+            )
             return OODResult(
                 method="energy",
                 score=energy,
                 confidence=confidence,
-                rejected=energy > settings.energy_ood_threshold,
+                rejected=energy > threshold,
+                threshold=threshold,
             )
     return OODResult(
         method="softmax",
         score=None,
         confidence=confidence,
         rejected=confidence < settings.disease_confidence_threshold,
+        threshold=settings.disease_confidence_threshold,
     )
 
 

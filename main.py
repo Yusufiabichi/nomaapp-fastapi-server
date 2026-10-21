@@ -183,7 +183,7 @@ async def diagnose(file: UploadFile = File(...)) -> DiagnosisResponse:
 
         # Stage 4: OOD layer 2 (energy score, softmax fallback).
         scores = to_scores(raw, settings.model_output_type)
-        ood = evaluate_expert(scores, settings)
+        ood = evaluate_expert(scores, settings, expert.spec.energy_threshold)
         top = int(np.argmax(scores.probs))
         disease = expert.diseases[top]
         log.update(
@@ -191,6 +191,7 @@ async def diagnose(file: UploadFile = File(...)) -> DiagnosisResponse:
             disease_confidence=round(ood.confidence, 4),
             ood_score=None if ood.score is None else round(ood.score, 4),
             ood_method=ood.method,
+            ood_threshold=ood.threshold,
             ood_rejected=ood.rejected,
         )
         check_expert(ood)

@@ -92,6 +92,8 @@ The container listens on `$PORT` (default `8000`). **Always run a single worker.
 - Router `classes` and each expert's `diseases` must be in the model's output order.
 - Expert keys must match the router's class names (case-insensitive).
 - A router class with no expert entry produces `unsupported_crop`.
+- An expert can set an optional `energy_threshold` (its calibrated OOD cutoff). Experts without one use `ENERGY_OOD_THRESHOLD`.
+- Validate a model before uploading it: `python scripts/check_model.py model.onnx --card card.json` (see [docs/MODEL_CONTRACT.md](docs/MODEL_CONTRACT.md)).
 - Router classes listed in `ROUTER_UNSUPPORTED_CLASSES` or `ROUTER_NO_PLANT_CLASSES` act as catch-all rejections.
 - The disk cache mirrors the bucket keys (`model_cache/experts/maize_v1.onnx`). To ship a new model version, use a new filename (`maize_v2.onnx`) and bump the manifest. The new file is fetched automatically on next startup.
 
@@ -115,7 +117,7 @@ The container listens on `$PORT` (default `8000`). **Always run a single worker.
 | `ROUTER_UNSUPPORTED_CLASSES` | `other,unknown,unsupported` | Catch-all router classes → `unsupported_crop` |
 | `ROUTER_NO_PLANT_CLASSES` | `no_plant,not_plant,background` | Router classes → `no_plant_detected` |
 | `ENERGY_TEMPERATURE` | `1.0` | `T` in `E(x) = -T·log Σ exp(logit/T)` |
-| `ENERGY_OOD_THRESHOLD` | `0.0` | Energy above this → `uncertain_disease_pattern`. **Tune on a validation set.** |
+| `ENERGY_OOD_THRESHOLD` | `0.0` | Energy above this → `uncertain_disease_pattern`. Fallback for experts with no `energy_threshold` in the manifest. **Tune on a validation set.** |
 | `DISEASE_CONFIDENCE_THRESHOLD` | `0.50` | Fallback gate used when a model outputs probabilities |
 | `MODEL_OUTPUT_TYPE` | `auto` | `auto`, `logits` or `probabilities` |
 | `MAX_WARM_EXPERTS` | `3` | Expert models kept in RAM |

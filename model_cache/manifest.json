@@ -1,18 +1,17 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "router": {
     "file": "router/crop_identifier_v1.onnx",
-    "version": "1.0.0",
+    "version": "0.0.1-pilot",
     "input_size": [
       224,
       224
     ],
     "classes": [
-      "cassava",
       "maize",
-      "tomato",
-      "pepper",
-      "yam"
+      "cassava",
+      "other",
+      "no_plant"
     ]
   },
   "experts": {
@@ -24,37 +23,8 @@
         "gray_leaf_spot",
         "common_rust",
         "healthy"
-      ]
-    },
-    "cassava": {
-      "file": "experts/cassava_model_v1.onnx",
-      "version": "1.0.0",
-      "diseases": [
-        "cbsd",
-        "cmd",
-        "cgm",
-        "healthy"
-      ]
-    },
-    "rice": {
-      "file": "experts/rice_model_v1.onnx",
-      "version": "1.0.0",
-      "diseases": [
-        "cbsd",
-        "cmd",
-        "cgm",
-        "healthy"
-      ]
-    },
-    "tomato": {
-      "file": "experts/tomato_model_v1.onnx",
-      "version": "1.0.0",
-      "diseases": [
-        "cbsd",
-        "cmd",
-        "cgm",
-        "healthy"
-      ]
+      ],
+      "energy_threshold": null
     }
   }
 }

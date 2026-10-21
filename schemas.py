@@ -28,6 +28,8 @@ class ExpertSpec(BaseModel):
     file: str
     version: str
     diseases: list[str] = Field(min_length=1)
+    # Calibrated per model by the ML team; None falls back to ENERGY_OOD_THRESHOLD.
+    energy_threshold: float | None = None
 
 
 class Manifest(BaseModel):
