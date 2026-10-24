@@ -1,28 +1,62 @@
 {
   "version": "1.2.1",
   "router": {
-    "file": "router/crop_identifier_v1.onnx",
-    "version": "0.0.1-pilot",
+    "file": "router/router_v1.onnx",
+    "version": "1.0.0",
     "input_size": [
       224,
       224
     ],
     "classes": [
-      "maize",
+      "bean",
       "cassava",
+      "maize",
+      "no_plant",
       "other",
-      "no_plant"
+      "rice"
     ]
   },
   "experts": {
     "maize": {
-      "file": "experts/corn_model_v1.onnx",
+      "file": "experts/maize_v1.onnx",
       "version": "1.0.0",
       "diseases": [
         "northern_blight",
-        "gray_leaf_spot",
         "common_rust",
+        "gray_leaf_spot",
         "healthy"
+      ],
+      "energy_threshold": -2.4615
+    },
+    "cassava": {
+      "file": "experts/cassava_v1.onnx",
+      "version": "1.0.0",
+      "diseases": [
+        "cassava_bacterial_blight",
+        "cassava_brown_streak_disease",
+        "cassava_green_mottle",
+        "cassava_mosaic_disease",
+        "healthy"
+      ],
+      "energy_threshold": null
+    },
+    "rice": {
+      "file": "experts/rice_v1.onnx",
+      "version": "1.0.0",
+      "diseases": [
+        "bacterial_leaf_blight",
+        "brown_spot",
+        "leaf_smut"
+      ],
+      "energy_threshold": null
+    },
+    "bean": {
+      "file": "experts/bean_v1.onnx",
+      "version": "1.0.0",
+      "diseases": [
+        "angular_leaf_spot",
+        "healthy",
+        "rust"
       ],
       "energy_threshold": null
     }

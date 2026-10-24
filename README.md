@@ -1,5 +1,19 @@
 # NomaApp v1.2 — Inference Service
 
+
+    "corn": {
+      "file": "experts/corn_v1.onnx",
+      "version": "1.0.0",
+      "diseases": [
+        "corn_blight",
+        "common_rust",
+        "gray_leaf_spot",
+        "healthy"
+      ],
+      "energy_threshold": null
+    },
+
+
 FastAPI service that diagnoses crop diseases from a farmer's photo. It runs ONNX models on CPU only, loading them from Cloudflare R2. It is built for a single-vCPU, 4 GB Railway VPS.
 
 ```
