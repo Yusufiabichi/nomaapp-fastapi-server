@@ -44,9 +44,12 @@
       "file": "experts/rice_v1.onnx",
       "version": "1.0.0",
       "diseases": [
-        "bacterial_leaf_blight",
         "brown_spot",
-        "leaf_smut"
+        "sheath_blight",
+        "leaf_scald",
+        "healthy",
+        "leaf_blast",
+        "bacterial_leaf_blight"
       ],
       "energy_threshold": null
     },
