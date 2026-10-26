@@ -32,26 +32,24 @@
       "file": "experts/cassava_v1.onnx",
       "version": "1.0.0",
       "diseases": [
-        "cassava_bacterial_blight",
-        "cassava_brown_streak_disease",
-        "cassava_green_mottle",
-        "cassava_mosaic_disease",
+        "cbb",
+        "cbsd",
+        "cgm",
+        "cmd",
         "healthy"
       ],
-      "energy_threshold": null
+      "energy_threshold": -0.8276
     },
     "rice": {
       "file": "experts/rice_v1.onnx",
       "version": "1.0.0",
       "diseases": [
+        "bacterial_leaf_blight",
         "brown_spot",
-        "sheath_blight",
-        "leaf_scald",
         "healthy",
-        "leaf_blast",
-        "bacterial_leaf_blight"
+        "leaf_smut"
       ],
-      "energy_threshold": null
+      "energy_threshold": -4.8053
     },
     "bean": {
       "file": "experts/bean_v1.onnx",
@@ -61,7 +59,7 @@
         "healthy",
         "rust"
       ],
-      "energy_threshold": null
+      "energy_threshold": -1.7684
     }
   }
 }
