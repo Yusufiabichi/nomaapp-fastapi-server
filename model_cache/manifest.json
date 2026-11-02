@@ -44,7 +44,7 @@
       "file": "experts/rice_v1.onnx",
       "version": "1.0.0",
       "diseases": [
-        "bacterial_leaf_blight", 
+        "bacterial_leaf_blight",
         "brown_spot", 
         "healthy", 
         "leaf_smut"
